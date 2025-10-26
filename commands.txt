@@ -1,0 +1,2 @@
+postgres -D database -p 5555
+psql -p 5555 -U postgres
