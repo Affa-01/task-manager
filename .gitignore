@@ -1,0 +1,2 @@
+# Ignore postgresql database files
+./database/*
