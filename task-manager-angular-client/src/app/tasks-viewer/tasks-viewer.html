@@ -1,0 +1,44 @@
+<div class="container-fluid vh-100 d-flex flex-column">
+  <div class="flex-grow-1 d-flex overflow-hidden">
+    <div id="pane1" class="flex-grow-1 overflow-auto p-3 border-end">
+      <div class="text-end mb-3">
+        <button type="button" class="btn btn-success" (click)="toggleNewListForm()">
+          {{isListFormOpen ? "Close Form" : "Add New List" }}
+        </button>
+      </div>
+
+      <ul class="list-group">
+          @for(list of lists; track list.id){
+              <li class="list-group-item list-group-item-action d-flex justify-content-between 
+                align-items-center {{currentlyOpen === list.id ? 'active' : '' }}" (click) ="openList(list.id)">
+                <div class="d-flex align-items-center w-100">
+                  {{list.name}}
+                </div>
+                <div class="ms-auto">
+                  <button class="btn btn-danger" (click)="deleteList(list.id)">Delete</button>
+                </div>
+              </li>
+          }
+
+          @if(isListFormOpen){
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <form [formGroup]="newListForm" (ngSubmit)="onSubmitListForm()" class="d-flex align-items-center w-100">
+                <input type="text" class="form-control me-2" id="listName"
+                  formControlName="name" name="listName" placeholder="List name"  required style="max-width: 300px;">
+                <div class="ms-auto">
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </form>
+            </li>
+          }
+      </ul>
+    </div>
+    @if(currentlyOpen != ""){
+      <list-viewer [listId]="currentlyOpen" class="overflow-auto p-3 border-start" style="width: 70%;"></list-viewer>
+    }
+  </div>
+</div>
+
+
+
+

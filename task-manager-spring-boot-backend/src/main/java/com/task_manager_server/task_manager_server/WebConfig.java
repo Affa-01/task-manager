@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
 	@Bean
 	public RouterFunction<?> routerFunctionTasks() {
 		RouterFunction<ServerResponse> route = route() 
-			.GET("/tasks/{id}", accept(APPLICATION_JSON), tasksHandler::getTasksInList)
+			.GET("/tasks/list/{id}", accept(APPLICATION_JSON), tasksHandler::getTasksInList)
 			.POST("/tasks", tasksHandler::createTask)
 			.DELETE("/tasks/{id}", tasksHandler::deleteTask)
 			.build();

@@ -1,0 +1,35 @@
+
+<div class="text-end mb-3">
+  <button type="button" class="btn btn-success" (click)="toggleNewTaskForm()">
+    {{isTaskFormOpen ? "Close Form" : "Add New Task" }}
+  </button>
+</div>
+
+<ul class="list-group">
+    @for(task of tasks; track task.id){
+        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center w-100">
+            {{task.entryString}}
+          </div>
+          <div class="ms-auto">
+            <button class="btn btn-danger" (click)="deleteTask(task.id)">Delete</button>
+          </div>
+        </li>
+    }
+
+    @if(isTaskFormOpen){
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <form [formGroup]="newTaskForm" (ngSubmit)="onSubmitTaskForm()" class="d-flex align-items-center w-100">
+          <input type="text" class="form-control me-2" id="listName"
+            formControlName="name" name="listName" placeholder="List name"  required style="max-width: 300px;">
+          <div class="ms-auto">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </form>
+      </li>
+    }
+</ul>
+
+
+
+
