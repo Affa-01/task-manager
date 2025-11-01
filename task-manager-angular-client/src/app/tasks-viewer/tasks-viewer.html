@@ -14,9 +14,9 @@
                 <div class="d-flex align-items-center w-100">
                   {{list.name}}
                 </div>
-                <div class="ms-auto">
-                  <button class="btn btn-danger" (click)="deleteList(list.id)">Delete</button>
-                </div>
+                <button matFab  (click)="deleteList(list.id); $event.stopPropagation()" aria-label="Delete List">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </li>
           }
 
