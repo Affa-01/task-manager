@@ -1,2 +1,16 @@
-<app-header/>
-<router-outlet />
+<div class="d-flex flex-column vh-100">
+    <app-header></app-header>
+    <div class="flex-grow-1 position-relative">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<style>
+:host ::ng-deep router-outlet + * {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+</style>

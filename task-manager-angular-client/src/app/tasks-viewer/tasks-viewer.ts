@@ -2,13 +2,10 @@ import { ChangeDetectorRef, Component, signal } from '@angular/core';
 import { DataApi, List} from '../data-api/data-api';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ListViewer } from '../list-viewer/list-viewer';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'tasks-viewer',
-  imports: [ReactiveFormsModule, FormsModule, ListViewer, MatIconModule, MatDividerModule, MatButtonModule],
+  imports: [ReactiveFormsModule, FormsModule, ListViewer],
   templateUrl: './tasks-viewer.html'
 })
 export class TasksViewer {

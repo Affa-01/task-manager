@@ -11,9 +11,9 @@
           <div class="d-flex align-items-center w-100">
             {{task.entryString}}
           </div>
-          <div class="ms-auto">
-            <button class="btn btn-danger" (click)="deleteTask(task.id)">Delete</button>
-          </div>
+          <button type="button" class="btn btn-danger" (click)="deleteTask(task.id); $event.stopPropagation()" aria-label="Delete Task">
+            <i class="bi bi-trash"></i> Delete
+          </button>
         </li>
     }
 
@@ -23,7 +23,9 @@
           <input type="text" class="form-control me-2" id="listName"
             formControlName="name" name="listName" placeholder="List name"  required style="max-width: 300px;">
           <div class="ms-auto">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="button" class="btn btn-success" (click)="toggleNewTaskForm()">
+              Submit
+            </button>
           </div>
         </form>
       </li>
