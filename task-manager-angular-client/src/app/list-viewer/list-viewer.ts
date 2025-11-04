@@ -26,14 +26,14 @@ export class ListViewer {
   ngOnChanges() {
     this.dataApi.getTasksFromList(this.listId).subscribe((tasks: Task[]) => {
       this.tasks = tasks;
-      this.changeDetector.detectChanges();
+      this.changeDetector.markForCheck();
     });
   }
 
   ngOnInit() {
     this.dataApi.getTasksFromList(this.listId).subscribe((tasks: Task[]) => {
       this.tasks = tasks;
-      this.changeDetector.detectChanges();
+      this.changeDetector.markForCheck();
     });
   }
 
@@ -47,13 +47,14 @@ export class ListViewer {
       this.tasks.push(response as Task);
       this.isTaskFormOpen = false;
       this.newTaskForm.reset();
-      this.changeDetector.detectChanges();
+      this.changeDetector.markForCheck();
     });
+    this.toggleNewTaskForm();
   }
   deleteTask(taskId: string){
     this.dataApi.deleteTask(taskId).subscribe((response) => {
       this.tasks = this.tasks.filter(task => task.id !== taskId);
-      this.changeDetector.detectChanges();
+      this.changeDetector.markForCheck();
     });
   }
 }

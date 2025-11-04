@@ -27,7 +27,7 @@ export class TasksViewer {
   ngOnInit() {
     this.dataApi.getLists().subscribe((lists: List[]) => {
       this.lists = lists;
-      this.changeDetector.detectChanges();
+      this.changeDetector.markForCheck();
     });
   }
 
@@ -41,7 +41,7 @@ export class TasksViewer {
       this.lists.push(response as List);
       this.isListFormOpen = false;
       this.newListForm.reset();
-      this.changeDetector.detectChanges();
+      this.changeDetector.markForCheck();
     });
   }
   deleteList(listId: string){
