@@ -18,10 +18,13 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	ListsHandler listsHandler;
 	TasksHandler tasksHandler;
+	AuthHandler authHandler;
 
-	public WebConfig(ListsHandler listsHandler, TasksHandler tasksHandler){
+	public WebConfig(ListsHandler listsHandler, TasksHandler tasksHandler,
+			AuthHandler authHandler) {
         this.listsHandler = listsHandler;
         this.tasksHandler = tasksHandler;
+		this.authHandler = authHandler;
     }
 
 	@Bean
@@ -40,6 +43,14 @@ public class WebConfig implements WebMvcConfigurer {
 			.GET("/lists", accept(APPLICATION_JSON), listsHandler::getLists)
 			.POST("/lists", listsHandler::createList)
 			.DELETE("/lists/{id}", listsHandler::deleteList)
+			.build();
+		return route;
+	}
+
+	@Bean
+	public RouterFunction<ServerResponse> routerFunctionAuth() {
+		RouterFunction<ServerResponse> route = route() 
+			.GET("/auth/status", authHandler::authStatus)
 			.build();
 		return route;
 	}

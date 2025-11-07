@@ -7,8 +7,13 @@
       <span class="fs-4">Task Manager</span>
 
       <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        <button type="button" class="btn btn-primary">Sign-up</button>
+        @if(isLoggedIm$ | async) {
+          <button type="button" class="btn btn-outline-primary me-2" (click)="logout()">Logout</button>
+        } 
+        @else {
+          <a type="button" class="btn btn-outline-primary me-2" href="/login" >Login</a>
+          <button type="button" class="btn btn-primary">Sign-up</button>
+        }
       </div>
     </header>
   </div>
